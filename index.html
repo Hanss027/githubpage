@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CompuStar | Technology Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5eead4;
+            --primary-dark: #0891b2;
+            --secondary: #818cf8;
+            --secondary-light: #a5b4fc;
+            --accent: #f472b6;
+            --bg: #181825;
+            --bg-gradient: linear-gradient(135deg, #181825 70%, #232946 100%);
+            --white: #f5f5f5;
+            --gray: #e0e0e0;
+            --shadow: 0 4px 24px rgba(129,140,248,0.13);
+            --glass: rgba(36,39,58,0.88);
+            --glass-blur: blur(7px);
+        }
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient), url('https://www.transparenttextures.com/patterns/stardust.png');
+            color: var(--gray);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            transition: background 0.6s, color 0.5s;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 80% 10%, var(--secondary) 0%, transparent 60%),
+                        radial-gradient(circle at 10% 90%, var(--accent) 0%, transparent 70%);
+            opacity: 0.12;
+        }
+        .author {
+            text-align: center;
+            margin-top: 14px;
+            font-weight: bold;
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: var(--primary-dark);
+            letter-spacing: 1px;
+            opacity: 0.92;
+            text-shadow: 0 1px 8px #0002;
+            z-index: 2;
+            position: relative;
+        }
+        header {
+            background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 44px 0 28px 0;
+            border-radius: 0 0 32px 32px;
+            margin-bottom: 36px;
+            box-shadow: var(--shadow);
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 2;
+        }
+        .header-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 12px #0003;
+        }
+        .header-subtitle {
+            font-size: 1.25em;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0.98;
+            text-shadow: 0 1px 8px #0002;
+        }
+        nav {
+            background: var(--glass);
+            border-radius: 18px;
+            box-shadow: 0 6px 32px #0002;
+            margin: -44px auto 40px auto;
+            max-width: 900px;
+            padding: 0 0.5em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: var(--glass-blur);
+            animation: fadeIn 1.2s;
+        }
+        .barra {
+            display: flex;
+            justify-content: center;
+            gap: 2.5em;
+            list-style: none;
+            margin: 0;
+            padding: 1em 0;
+        }
+        .barra li a {
+            color: var(--primary-dark);
+            background: rgba(255,255,255,0.03);
+            text-decoration: none;
+            padding: 11px 26px;
+            border-radius: 10px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+            box-shadow: 0 1px 4px #0001;
+            position: relative;
+        }
+        .barra li a:hover, .barra li a:focus {
+            background: var(--secondary-light);
+            color: var(--secondary);
+            box-shadow: 0 2px 12px var(--secondary-light);
+            transform: scale(1.07);
+        }
+        main {
+            display: flex;
+            gap: 36px;
+            max-width: 1150px;
+            margin: auto;
+            padding: 0 18px 36px 18px;
+            position: relative;
+            z-index: 1;
+        }
+        section {
+            flex: 3;
+            background: var(--glass);
+            border-radius: 22px;
+            padding: 40px 36px 36px 36px;
+            box-shadow: 0 4px 32px #0003;
+            min-width: 0;
+            animation: fadeInUp 1.1s;
+            backdrop-filter: var(--glass-blur);
+            position: relative;
+        }
+        .section-block {
+            background: rgba(36,39,58,0.65);
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #23294633;
+            padding: 22px 18px 18px 18px;
+            margin-bottom: 2em;
+            animation: fadeIn 1.2s;
+            transition: box-shadow 0.3s, background 0.3s;
+        }
+        .section-block:hover {
+            box-shadow: 0 6px 32px var(--secondary-light), 0 2px 12px var(--accent);
+            background: rgba(36,39,58,0.85);
+        }
+        .section-block h1 {
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+        section h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.1em;
+            color: var(--primary);
+            margin-top: 0.5em;
+            margin-bottom: 0.2em;
+            letter-spacing: 1.2px;
+            text-shadow: 0 1px 8px #0002;
+        }
+        section hr {
+            border: none;
+            border-top: 2px solid var(--secondary);
+            margin: 2em 0;
+            opacity: 0.5;
+        }
+        section p, section h4 {
+            font-size: 1.13em;
+            line-height: 1.7;
+        }
+        .intro {
+            font-size: 1.18em;
+            color: var(--secondary);
+            background: #232946ee;
+            border-radius: 12px;
+            padding: 16px 22px;
+            margin-bottom: 1.7em;
+            font-family: 'Montserrat', Arial, sans-serif;
+            box-shadow: 0 2px 12px var(--secondary-light);
+            animation: fadeIn 1.3s;
+            border-left: 5px solid var(--primary);
+        }
+        .product-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5em 0;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+            background: linear-gradient(90deg, #232946 60%, #181825 100%);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px var(--secondary-light), 0 1.5px 8px var(--accent);
+            padding: 14px 18px;
+            font-size: 1.13em;
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            animation: slideFadeIn 0.9s forwards;
+            transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
+            cursor: pointer;
+        }
+        .product-item:nth-child(1) { animation-delay: 0.2s; }
+        .product-item:nth-child(2) { animation-delay: 0.4s; }
+        .product-item:nth-child(3) { animation-delay: 0.6s; }
+        .product-item:nth-child(4) { animation-delay: 0.8s; }
+        .product-item:nth-child(5) { animation-delay: 1s; }
+        .product-item:hover {
+            box-shadow: 0 6px 32px var(--accent), 0 2px 12px var(--secondary);
+            transform: scale(1.035) translateY(-2px);
+            background: linear-gradient(90deg, #232946 40%, #5eead4 100%);
+        }
+        .product-img {
+            width: 68px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-right: 22px;
+            border: 2.5px solid var(--primary);
+            background: var(--white);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            box-shadow: 0 2px 8px #0002;
+        }
+        .product-item:hover .product-img {
+            transform: scale(1.10) rotate(-3deg);
+            box-shadow: 0 4px 16px var(--accent);
+            border-color: var(--accent);
+        }
+        h4.volver {
+            margin: 22px 0 0 0;
+            font-size: 1.05em;
+        }
+        h4.volver a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s, text-shadow 0.2s, background 0.2s;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+        h4.volver a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+            text-shadow: 0 1px 8px var(--secondary-light);
+            background: #23294644;
+        }
+        aside {
+            flex: 1.2;
+            background: var(--glass);
+            border-radius: 22px;
+            padding: 32px 22px 26px 22px;
+            font-size: 1.09em;
+            box-shadow: 0 4px 32px #0003;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2em;
+            color: var(--gray);
+            animation: fadeInRight 1.2s;
+            backdrop-filter: var(--glass-blur);
+            position: relative;
+        }
+        aside h1 {
+            font-size: 1.35em;
+            color: var(--primary);
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin-top: 0;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 8px #0002;
+        }
+        aside p {
+            margin-bottom: 0.8em;
+        }
+        .services-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2em;
+        }
+        .service-card {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, #232946 60%, #181825 100%);
+            border-radius: 14px;
+            box-shadow: 0 2px 16px var(--secondary-light), 0 1.5px 8px var(--accent);
+            padding: 10px 14px;
+            gap: 18px;
+            transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateX(30px) scale(0.97);
+            animation: fadeInRight 0.8s forwards;
+        }
+        .services-list li:nth-child(1) .service-card { animation-delay: 0.2s; }
+        .services-list li:nth-child(2) .service-card { animation-delay: 0.4s; }
+        .services-list li:nth-child(3) .service-card { animation-delay: 0.6s; }
+        .services-list li:nth-child(4) .service-card { animation-delay: 0.8s; }
+        .service-card:hover {
+            box-shadow: 0 6px 32px var(--accent), 0 2px 12px var(--secondary);
+            transform: scale(1.025) translateY(-2px);
+            background: linear-gradient(90deg, #232946 40%, #5eead4 100%);
+        }
+        .service-img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid var(--primary);
+            background: var(--white);
+            margin-right: 10px;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            box-shadow: 0 2px 8px #0002;
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 4px 16px var(--accent);
+            border-color: var(--accent);
+        }
+        .service-card a {
+            color: var(--secondary);
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1.08em;
+            text-decoration: none;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+        .service-card a:hover {
+            color: var(--primary-dark);
+            text-shadow: 0 1px 8px var(--secondary-light);
+            text-decoration: underline;
+        }
+        footer {
+            margin-top: 38px;
+            background: linear-gradient(90deg, var(--secondary) 60%, var(--primary) 100%);
+            color: #fff;
+            text-align: center;
+            font-size: 1.13em;
+            padding: 22px 0 14px 0;
+            border-radius: 18px 18px 0 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 16px #0002;
+            animation: fadeInUp 1.3s;
+            position: relative;
+            z-index: 2;
+        }
+        @media (max-width: 900px) {
+            main {
+                flex-direction: column;
+                gap: 0;
+            }
+            section, aside {
+                border-radius: 16px;
+                margin-bottom: 18px;
+                padding: 18px 10px;
+            }
+            .service-img {
+                width: 60px;
+                height: 45px;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.1em;
+                padding: 18px 0 10px 0;
+            }
+            .barra {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+            main {
+                padding: 0 4px;
+            }
+            section, aside {
+                padding: 10px 4px;
+            }
+            .product-img {
+                width: 40px;
+                height: 40px;
+            }
+            .service-img {
+                width: 40px;
+                height: 30px;
+            }
+            .service-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+        @keyframes slideFadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97);}
+            to { opacity: 1; transform: translateY(0) scale(1);}
+        }
+    </style>
+</head>
+<body>
+    <div class="author">Hanssell Isaias Lucero Ramirez</div>
+    <header>
+        <div class="header-title">CompuStar</div>
+        <div class="header-subtitle">¡¡Welcome to the CompuStar website, the best in the market!!</div>
+    </header>
+    <nav>
+        <ul class="barra" id="nav">
+            <li><a href="#ini">Start</a></li>
+            <li><a href="#mis">Mission</a></li>
+            <li><a href="#vis">Vision</a></li>
+            <li><a href="#pro">Products</a></li>
+            <li><a href="#ser">Services</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <div class="intro">
+                <span style="font-size:1.25em;font-weight:bold;color:var(--primary);letter-spacing:1px;">
+                    Technology at your fingertips
+                </span>
+                <br>
+                <span style="color:var(--secondary);font-weight:500;">
+                    Solutions tailored to your needs.
+                </span>
+                <br>
+                <span style="color:var(--accent);font-weight:500;">
+                    Reliable, innovative and accessible technological solutions.
+                </span>
+                <br>
+                <span style="color:var(--gray);font-size:0.98em;">
+                    With years of experience, we specialize in computer services, technical support, maintenance, equipment sales, and consulting for both businesses and individuals.
+                </span>
+            </div>
+            <div class="section-block" id="ini">
+                <h1>Start</h1>
+                <p>
+                    <span style="color:var(--primary);font-weight:bold;">Technology that connects you, solutions that support you.</span>
+                    <br>
+                    Your trusted partner in computing services, technical support, and technological solutions.<br>
+                    <span style="color:var(--secondary);">From your home to your business, at CompuStar we help you keep your technology working as it should.</span>
+                    <br>
+                    <span style="color:var(--accent);font-weight:500;">Fast, professional, and hassle-free.</span>
+                </p>
+            </div>
+            <hr>
+            <div class="section-block" id="mis">
+                <h1>Mission</h1>
+                <p>
+                    <span style="color:var(--primary);font-weight:bold;">Our mission is to make your life easier with technology that works.</span>
+                    <br>
+                    Whether you need to repair your computer, improve your business network, or find the perfect equipment for your needs, at <span style="color:var(--secondary);font-weight:bold;">CompuStar</span> we have the ideal solution.
+                </p>
+            </div>
+            <hr>
+            <div class="section-block" id="vis">
+                <h1>Vision</h1>
+                <p>
+                    <span style="color:var(--primary);font-weight:bold;">A future where technology is accessible, reliable, and useful for everyone.</span>
+                    <br>
+                    We want to be the leading company in computing solutions and technological support in our region, recognized for the quality of our services, our closeness with customers, and our commitment to constant innovation.
+                    <br>
+                    <span style="color:var(--accent);font-weight:500;">We strive to build lasting relationships based on trust, offering fast, efficient, and personalized answers to every technological need.</span>
+                </p>
+            </div>
+            <hr>
+            <div class="section-block" id="pro">
+                <h1>Products</h1>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <img src="repa.webp" alt="Equipment maintenance" class="product-img">
+                        <span>
+                            <span style="color:var(--primary);font-weight:500;">Equipment maintenance</span>
+                        </span>
+                    </li>
+                    <li class="product-item">
+                        <img src="venti.avif" alt="Sale of cellular products" class="product-img">
+                        <span>
+                            <span style="color:var(--secondary);font-weight:500;">Sale of cellular products</span>
+                        </span>
+                    </li>
+                    <li class="product-item">
+                        <img src="air.jpeg" alt="Sound products" class="product-img">
+                        <span>
+                            <span style="color:var(--accent);font-weight:500;">Sound products</span> (Headphones, speakers, etc.)
+                        </span>
+                    </li>
+                    <li class="product-item">
+                        <img src="piez.jpg" alt="PC items" class="product-img">
+                        <span>
+                            <span style="color:var(--primary-dark);font-weight:500;">PC items</span> (monitors, mice, keyboards, RAM, hard disk, etc.)
+                        </span>
+                    </li>
+                    <li class="product-item">
+                        <img src="compo.jpg" alt="Components for PC" class="product-img">
+                        <span>
+                            <span style="color:var(--secondary-light);font-weight:500;">Components for PC</span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <aside>
+            <h1 id="ser">Services</h1>
+            <p>
+                To take care of all your devices it is necessary to maintain them. That's why at <span style="color:var(--primary);font-weight:bold;">CompuStar</span> we offer you different services to keep all your devices at <span style="color:var(--accent);font-weight:bold;">100%</span> and at a good price.
+            </p>
+            <ol class="services-list">
+                <li>
+                    <div class="service-card">
+                        <img src="rep.jpg" alt="reparacion" class="service-img">
+                        <a href="https://crcompumania.com/reparacion-y-mantenimiento-de-computadoras-en-guatemala/" target="_blank">Computer repair</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-card">
+                        <img src="limpieza.jpg" alt="Limpieza" class="service-img">
+                        <a href="https://medlineplus.gov/spanish/ency/patientinstructions/000443.htm" target="_blank">Equipment cleaning</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-card">
+                        <img src="soporte.jpg" alt="soporte" class="service-img">
+                        <a href="https://www.euroinnova.com/blog/que-es-un-soporte-tecnico" target="_blank">Technical Support</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-card">
+                        <img src="componentes.jpg" alt="componentes" class="service-img">
+                        <a href="https://www.amazon.com/s?k=laptops+on+sale&language=es_US&adgrpid=156715978760&hvadid=690303790746&hvdev=c&hvlocphy=9069801&hvnetw=g&hvqmt=b&hvrand=9316293635715456203&hvtargid=kwd-16847623&hydadcr=15631_13726194&mcid=aa052e5964ca36d3b9402bf4efac56f9&tag=txscdpesrow-20&ref=pd_sl_94f01jw70_b" target="_blank">Sale of items</a>
+                    </div>
+                </li>
+            </ol>
+        </aside>
+    </main>
+    <footer>
+        &copy; CompuStar &mdash; All rights reserved
+    </footer>
+</body>
+</html>
